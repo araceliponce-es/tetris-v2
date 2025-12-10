@@ -16,6 +16,8 @@
  */
 package tetris;
 
+import java.util.HashMap;
+
 /**
  * Clase que implementa o comportamento do xogo do Tetris
  * @author Profe de Programación
@@ -55,6 +57,12 @@ public class Game {
      * Número de liñas feitas no xogo
      */
     private int numberOfLines = 0;
+    
+    
+    /**
+     * ground squares
+     */
+    private HashMap<String, Square> groundSquares = new HashMap<String, Square>();
 
     /**
      * @return Referenza á ventá principal do xogo
@@ -104,7 +112,7 @@ public class Game {
      */
     public Game(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
-        this.createNewPiece();
+        this.createNewPiece();   
     }
 
     /**
@@ -157,9 +165,23 @@ public class Game {
      * @return true se esa posición é válida, se non false
      */
     public boolean isValidPosition(int x, int y) {
+        
+        //si xo y sobrepasa alguno de los maximos o es menor que cero
         if ((x == MAX_X) || (x < 0) || (y == MAX_Y)||(y < 0)) {
             return false;
         }
+        
+        //si x o y es igual al x o y de alguno de los groundSquares
+        for (int i = 0; i < groundSquares.size(); i++) {
+            groundSquares.get(i).getX();
+            groundSquares.get(i).getY();
+            
+            return false;
+        }
+        
+        
+        
+        
         return true;
     }
 
