@@ -9,7 +9,7 @@ package ahorcado.parte1;
  * @author Araceli,Diego,Óscar
  */
 public class AhorcadoParte1 {
-    private int[] characters=new int[];
+    private int[] characters=new int[16];
 
     /**
      * @param args the command line arguments
