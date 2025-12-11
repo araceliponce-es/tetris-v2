@@ -104,7 +104,7 @@ class Piece():
     # Referenza ao obxecto xogo
     game:'Game'
     # Referenzas aos 4 cadrados que forman a peza
-    # 1.4 
+    # 1.4 edit
     a:Square
     b:Square
     c:Square
