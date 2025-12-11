@@ -231,5 +231,4 @@ public class Game {
         // Polo momento, non facemos nada
         return false;
     }
-    //Cambios
 }
