@@ -6,7 +6,7 @@ package ahorcado.parte1;
 
 /**
  *
- * @author Diego
+ * @author Araceli,Diego,Óscar
  */
 public class AhorcadoParte1 {
 
