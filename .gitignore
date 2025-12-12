@@ -89,4 +89,5 @@ $RECYCLE.BIN/
 # **/nbproject/project.xml
 # **build.xml
 # **manifest.mf
-/Taceboke/Tacebook/nbproject/private/
+# /Taceboke/Tacebook/nbproject/private/
+**/nbproject/private/ 

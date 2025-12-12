@@ -4,6 +4,8 @@
  */
 package ahorcado.parte1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Araceli,Diego,Óscar
@@ -40,7 +42,12 @@ public class HiddenWord {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner scan = new Scanner(System.in);
+        System.out.println("¿Qué letra estará en esta palabra misteriosa?:");
+        char c = scan.next().charAt(0);
+        HiddenWord palabraSecreta = new HiddenWord("Guacamole");
+        palabraSecreta.checkChar(c);
+        palabraSecreta.show();
     }
 
     public boolean checkChar(char c) {
@@ -56,11 +63,10 @@ public class HiddenWord {
         for (int i = 0; i < hits.length; i++) {
             if (hits[i] = true) {
                 return "" + characters[i];
-            } else {
-                return "-";
             }
+            return "-";
         }
-        return "yes";
+        return "Esto no debería aparecer";
     }
 
 }
