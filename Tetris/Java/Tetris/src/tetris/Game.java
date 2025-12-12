@@ -171,13 +171,16 @@ public class Game {
         if ((x == MAX_X) || (x < 0) || (y == MAX_Y)||(y < 0)) {
             return false;
         }
-        
+
         //si x o y es igual al x o y de alguno de los groundSquares
+        //es igual a los valores de ground devolvera falso
         for (int i = 0; i < groundSquares.size(); i++) {
-            groundSquares.get(i).getX();
-            groundSquares.get(i).getY();
-            
-            return false;
+            int groundX =groundSquares.get(i).getX();
+            int groundY =groundSquares.get(i).getY();
+            if (groundX == x && groundY == y){
+                return false;
+            }
+
         }
         return true;
     }
@@ -195,7 +198,15 @@ public class Game {
      */
     private void addPieceToGround() {
         // Engadimos os cadrados da peza ao chan
+        
+            Square squares[] = currentPiece.getSquares();
+            for (int j=0; j > squares.length;j++){
+                String coordinates = squares[j].getCoordinates();
+                this.groundSquares.put(coordinates, squares[j]);
+            }
+            
 
+        
         // Chamamos ao método que borra as liñas do chan que estean completas
         this.deleteCompletedLines();
     }
