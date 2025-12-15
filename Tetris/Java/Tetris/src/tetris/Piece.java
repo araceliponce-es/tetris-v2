@@ -127,17 +127,17 @@ public class Piece {
                 x = squares[i].getX();
             }
         }
-        int counterValids = 0;
+        
         // revisa si la posicion nueva a tomar es valida
         for (int i = 0; i < squares.length; i++) {
             //es valido?
             if (game.isValidPosition(x - game.SQUARE_SIDE, squares[i].getY())) {
-                counterValids++;
+               canMove=true;
 
             }
         }
 
-        if (counterValids == squares.length) {
+        if (canMove) {
             for (int j = 0; j < squares.length; j++) {
                 squares[j].setX(squares[j].getX() - game.SQUARE_SIDE);
             }
@@ -162,6 +162,7 @@ public class Piece {
             }
         }
 
+        //solo .moveDown() necesita que todos los cuadrados sean validos. usa un counter
         int counterValids = 0;
         // revisa cada square
         for (int i = 0; i < squares.length; i++) {
