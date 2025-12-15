@@ -171,17 +171,12 @@ public class Game {
         if ((x == MAX_X) || (x < 0) || (y == MAX_Y)||(y < 0)) {
             return false;
         }
-
+        if (groundSquares.containsKey(x+","+y)){
+            return false;
+        }
         //si x o y es igual al x o y de alguno de los groundSquares
         //es igual a los valores de ground devolvera falso
-        for (int i = 0; i < groundSquares.size(); i++) {
-            int groundX =groundSquares.get(i).getX();
-            int groundY =groundSquares.get(i).getY();
-            if (groundX == x && groundY == y){
-                return false;
-            }
 
-        }
         return true;
     }
 
@@ -200,7 +195,7 @@ public class Game {
         // Engadimos os cadrados da peza ao chan
         
             Square squares[] = currentPiece.getSquares();
-            for (int j=0; j > squares.length;j++){
+            for (int j=0; j < squares.length;j++){
                 String coordinates = squares[j].getCoordinates();
                 this.groundSquares.put(coordinates, squares[j]);
             }
@@ -236,6 +231,9 @@ public class Game {
      * @return true se a peza actual choca cos cadrados do chan; se non false
      */
     private boolean hitPieceTheGround() {
+        
+        
+        
         // Polo momento, non facemos nada
         return false;
     }
