@@ -39,25 +39,7 @@ public class HiddenWord {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("¿Qué letra estará en esta palabra misteriosa?:");
-        char c = scan.next().charAt(0);
-        HiddenWord palabraSecreta = new HiddenWord("Guacamole");
-        palabraSecreta.checkChar(c);
-        //System.out.println(palabraSecreta.show());
-        palabraSecreta.showBis();
-
-        if (palabraSecreta.isVisible()) {
-            System.out.println("GANASTE: " + palabraSecreta.showFullWord());
-        } else {
-            System.out.println("Perdiste: " + palabraSecreta.showFullWord());
-        }
-    }
+ 
 
     public boolean checkChar(char caracter) {
         for (int i = 0; i < characters.length; i++) {

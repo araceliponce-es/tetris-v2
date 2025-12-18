@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author daw1al11
+ * @author Araceli,Diego,Óscar
  */
 public class HangMan {
 
@@ -41,12 +41,21 @@ public class HangMan {
     }
 
     public void tryChar(char caracter) {
-        if (hiddenWord.checkChar(caracter)==false) {
+        if (hiddenWord.checkChar(caracter) == false) {
             fails.add(caracter);
-        }else{
-            
+        } else {
+            hiddenWord.checkChar(caracter);
         }
+    }
 
+    public boolean isGameOver() {
+        return hiddenWord.isVisible();
+    }
+
+    public boolean maxFailsExceeded() {
+        boolean excedido;
+        excedido = fails.size() >= 6;
+        return excedido;
     }
 
 }
