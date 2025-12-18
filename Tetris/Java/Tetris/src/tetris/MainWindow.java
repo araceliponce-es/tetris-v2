@@ -16,8 +16,15 @@
  */
 package tetris;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  * Clase que implementa a ventá principal do xogo do Tetris
@@ -33,6 +40,16 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+  
+        //quita el foco a los botones para que Space no los enfoque
+        btnNewGame.setFocusable(false);
+        btnLeft.setFocusable(false);
+        btnRight.setFocusable(false);
+        btnDown.setFocusable(false);
+        btnRotate.setFocusable(false);
+        tglbtnPause.setFocusable(false);
+
+        configKeys(); //usa teclado 
     }
 
     /**
@@ -85,6 +102,79 @@ public class MainWindow extends javax.swing.JFrame {
         // Establecemos o número de liñas que se mostran na ventá a cero
         lblNumberOfLines.setText("0");
     }
+
+    private void configKeys() {
+
+        JComponent root = this.getRootPane();
+        InputMap im = root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = root.getActionMap();
+
+        // ENTER → Nueva partida
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "newGame");
+        am.put("newGame", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnNewGame.doClick();
+            }
+        });
+
+        // Espacio = Pausa
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "pause");
+        am.put("pause", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tglbtnPause.doClick();
+            }
+        });
+        // ← Izquierda
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
+        am.put("left", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnLeft.doClick();
+            }
+        });
+
+        // → Derecha
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+        am.put("right", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRight.doClick();
+            }
+        });
+
+        // ↓ Abajo
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
+        am.put("down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnDown.doClick();
+            }
+        });
+
+        // ↑ Rotar
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "rotate");
+        am.put("rotate", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRotate.doClick();
+            }
+        });
+
+
+
+        // Usar ADSW Y adsw
+        im.put(KeyStroke.getKeyStroke('A'), "left");
+        im.put(KeyStroke.getKeyStroke('a'), "left");
+        im.put(KeyStroke.getKeyStroke('D'), "right");
+        im.put(KeyStroke.getKeyStroke('d'), "right");
+        im.put(KeyStroke.getKeyStroke('S'), "down");
+        im.put(KeyStroke.getKeyStroke('s'), "down");
+        im.put(KeyStroke.getKeyStroke('W'), "rotate");
+        im.put(KeyStroke.getKeyStroke('w'), "rotate");
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
