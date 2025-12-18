@@ -19,8 +19,11 @@ public class MenuGenerator {
      */
     public static void main(String[] args) {
         MenuGenerator menuGenerator = new MenuGenerator();
+        
+        do{
         menuGenerator.hangMan = new HangMan(menuGenerator.showInitMenu());
         menuGenerator.showGameMenu();
+        }while(!menuGenerator.showExitMenu());
 
     }
 
@@ -31,12 +34,25 @@ public class MenuGenerator {
 
     private void showGameMenu() {
         Scanner scan = new Scanner(System.in);
+        while(!hangMan.maxFailsExceeded()){
         System.out.println(hangMan.getStringFails());
         System.out.println("¿Qué letra estará en esta palabra misteriosa?:");
         char c = scan.next().charAt(0);
         hangMan.tryChar(c);
-        hangMan.showHidenWord();
+        System.out.println(hangMan.showHidenWord());
+        }
 
+    }
+    
+    private boolean showExitMenu(){
+        if(hangMan.maxFailsExceeded() || hangMan.isGameOver() ){
+        System.out.println("¿Quieres jugar otra vez?(s/n)");
+        Scanner scan = new Scanner(System.in);
+        String respuesta = scan.nextLine();
+        return !("s".equals(respuesta) || "S".equals(respuesta));
+        }else{
+            return false;
+        }
     }
 
 }

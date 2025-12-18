@@ -33,7 +33,7 @@ public class HangMan {
     }
 
     public String showHidenWord() {
-        return hiddenWord.show();
+        return hiddenWord.showBis();
     }
 
     public String showFullWord() {

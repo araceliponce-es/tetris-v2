@@ -47,7 +47,7 @@ public class HiddenWord {
                 hits[i] = true;
             }
         }
-        return false;
+        return true;
     }
 
     public String show() {
@@ -71,7 +71,6 @@ public class HiddenWord {
                 System.out.print("-");
             }
         }
-        System.out.println();
         return "";
     }
 
@@ -86,13 +85,13 @@ public class HiddenWord {
     public boolean isVisible() {
         boolean acertada = false;
         for (int i = 0; i < characters.length; i++) {
-            if (characters[i] != 0) {
+            if (characters[i] =='-') {
                 acertada = false;
 
             } else {
                 acertada = true;
                 for (i = 0; i < characters.length; i++) {
-                    if (characters[i] != 0) {
+                    if (characters[i] =='-') {
                         acertada = false;
                     }
                 }
