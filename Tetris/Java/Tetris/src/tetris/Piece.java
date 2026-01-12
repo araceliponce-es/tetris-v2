@@ -77,6 +77,7 @@ public class Piece {
     public boolean moveRight() {
 
         boolean canMove = false;
+        
         // x sera igual al valor mas grande de los 4 squares
         int x = Integer.MIN_VALUE;
         for (int i = 0; i < squares.length; i++) {
@@ -85,16 +86,7 @@ public class Piece {
             }
         }
 
-        // revisa si la posicion nueva a tomar es valida
-//        if (game.isValidPosition(x + game.SQUARE_SIDE, 0)) {
-//
-//            // incrementa la coordenada X de cada square
-//            for (int i = 0; i < squares.length; i++) {
-//                squares[i].setX(squares[i].getX() + game.SQUARE_SIDE);
-//            }
-//            canMove = true;
-//        }
-//        
+   
         int counterValids = 0;
 
         for (int i = 0; i < squares.length; i++) {
@@ -133,20 +125,25 @@ public class Piece {
             }
         }
         
-        // revisa si la posicion nueva a tomar es valida
+       int counterValids = 0;
+
         for (int i = 0; i < squares.length; i++) {
             //es valido?
             if (game.isValidPosition(x - game.SQUARE_SIDE, squares[i].getY())) {
-               canMove=true;
+                //se mueve   
+
+                counterValids++;
 
             }
         }
 
-        if (canMove) {
+        if (counterValids == squares.length) {
             for (int j = 0; j < squares.length; j++) {
                 squares[j].setX(squares[j].getX() - game.SQUARE_SIDE);
+
             }
         }
+
         return canMove;
     }
 
