@@ -49,7 +49,7 @@ public class HangMan {
     }
 
     public boolean isGameOver() {
-        return hiddenWord.isVisible();
+        return hiddenWord.isVisible() || maxFailsExceeded();
     }
 
     public boolean maxFailsExceeded() {

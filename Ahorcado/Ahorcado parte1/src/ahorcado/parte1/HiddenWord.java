@@ -42,12 +42,14 @@ public class HiddenWord {
  
 
     public boolean checkChar(char caracter) {
+        boolean charFound = false;
         for (int i = 0; i < characters.length; i++) {
             if (caracter == characters[i]) {
                 hits[i] = true;
+                charFound = true;
             }
         }
-        return true;
+        return charFound;
     }
 
     public String show() {
@@ -84,14 +86,14 @@ public class HiddenWord {
 
     public boolean isVisible() {
         boolean acertada = false;
-        for (int i = 0; i < characters.length; i++) {
-            if (characters[i] =='-') {
+        for (int i = 0; i < hits.length; i++) {
+            if (hits[i] ==false) {
                 acertada = false;
 
             } else {
                 acertada = true;
-                for (i = 0; i < characters.length; i++) {
-                    if (characters[i] =='-') {
+                for (i = 0; i < hits.length; i++) {
+                    if (hits[i] ==false) {
                         acertada = false;
                     }
                 }
