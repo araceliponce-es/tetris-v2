@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class HangMan {
 
     public static final int MAX_FAILS = 6;
-    HiddenWord hiddenWord = new HiddenWord("");
+    private HiddenWord hiddenWord = new HiddenWord("");
     private ArrayList<Character> fails = new ArrayList();
 
     public HangMan(String palabra) {
@@ -41,7 +41,7 @@ public class HangMan {
     }
 
     public void tryChar(char caracter) {
-        if (hiddenWord.checkChar(caracter) == false) {
+        if (!hiddenWord.checkChar(caracter)) {
             fails.add(caracter);
         } else {
             hiddenWord.checkChar(caracter);

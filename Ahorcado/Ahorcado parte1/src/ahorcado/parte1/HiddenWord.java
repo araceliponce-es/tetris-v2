@@ -39,8 +39,6 @@ public class HiddenWord {
         }
     }
 
- 
-
     public boolean checkChar(char caracter) {
         boolean charFound = false;
         for (int i = 0; i < characters.length; i++) {
@@ -52,18 +50,17 @@ public class HiddenWord {
         return charFound;
     }
 
-    public String show() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < characters.length; i++) {
-            if (hits[i]) {
-                sb.append(characters[i]);
-            } else {
-                sb.append("-");
-            }
-        }
-        return sb.toString();
-    }
-
+//    public String show() {
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < characters.length; i++) {
+//            if (hits[i]) {
+//                sb.append(characters[i]);
+//            } else {
+//                sb.append("-");
+//            }
+//        }
+//        return sb.toString();
+//    }
     public String showBis() {
 
         for (int i = 0; i < characters.length; i++) {
@@ -77,26 +74,14 @@ public class HiddenWord {
     }
 
     public String showFullWord() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < characters.length; i++) {
-            sb.append(characters[i]);
-        }
-        return sb.toString();
+        return new String(characters);
     }
 
     public boolean isVisible() {
-        boolean acertada = false;
-        for (int i = 0; i < hits.length; i++) {
-            if (hits[i] ==false) {
+        boolean acertada = true;
+        for (int i = 0; i < hits.length && acertada; i++) {
+            if (!hits[i]) {
                 acertada = false;
-
-            } else {
-                acertada = true;
-                for (i = 0; i < hits.length; i++) {
-                    if (hits[i] ==false) {
-                        acertada = false;
-                    }
-                }
             }
         }
         return acertada;

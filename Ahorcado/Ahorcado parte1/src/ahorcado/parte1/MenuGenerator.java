@@ -22,7 +22,11 @@ public class MenuGenerator {
         do {
             menuGenerator.hangMan = new HangMan(menuGenerator.showInitMenu());
             menuGenerator.showGameMenu();
+            if(menuGenerator.hangMan.isGameOver()){
+                System.out.println("La palabra era: "+menuGenerator.hangMan.showFullWord());
+            }
         } while (!menuGenerator.showExitMenu());
+        
 
     }
 
