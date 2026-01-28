@@ -42,7 +42,8 @@ public class HiddenWord {
     public boolean checkChar(char caracter) {
         boolean charFound = false;
         for (int i = 0; i < characters.length; i++) {
-            if (caracter == characters[i]) {
+            //Pasa los caracteres a minúscula si no lo eran de antes 
+            if (Character.toLowerCase(caracter) == Character.toLowerCase(characters[i])) {
                 hits[i] = true;
                 charFound = true;
             }
@@ -50,28 +51,28 @@ public class HiddenWord {
         return charFound;
     }
 
-//    public String show() {
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < characters.length; i++) {
-//            if (hits[i]) {
-//                sb.append(characters[i]);
-//            } else {
-//                sb.append("-");
-//            }
-//        }
-//        return sb.toString();
-//    }
-    public String showBis() {
-
+    public String show() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < characters.length; i++) {
             if (hits[i]) {
-                System.out.print(characters[i]);
+                sb.append(characters[i]);
             } else {
-                System.out.print("-");
+                sb.append("-");
             }
         }
-        return "";
+        return sb.toString();
     }
+//    public String showBis() {
+//
+//        for (int i = 0; i < characters.length; i++) {
+//            if (hits[i]) {
+//                System.out.print(characters[i]);
+//            } else {
+//                System.out.print("-");
+//            }
+//        }
+//        return "";
+//    }
 
     public String showFullWord() {
         return new String(characters);

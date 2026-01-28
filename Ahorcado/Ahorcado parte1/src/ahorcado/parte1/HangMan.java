@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class HangMan {
 
     public static final int MAX_FAILS = 6;
-    private HiddenWord hiddenWord = new HiddenWord("");
+    private HiddenWord hiddenWord;
     private ArrayList<Character> fails = new ArrayList();
 
     public HangMan(String palabra) {
@@ -33,7 +33,7 @@ public class HangMan {
     }
 
     public String showHidenWord() {
-        return hiddenWord.showBis();
+        return hiddenWord.show();
     }
 
     public String showFullWord() {
@@ -43,9 +43,7 @@ public class HangMan {
     public void tryChar(char caracter) {
         if (!hiddenWord.checkChar(caracter)) {
             fails.add(caracter);
-        } else {
-            hiddenWord.checkChar(caracter);
-        }
+        } 
     }
 
     public boolean isGameOver() {
@@ -54,7 +52,7 @@ public class HangMan {
 
     public boolean maxFailsExceeded() {
         boolean excedido;
-        excedido = fails.size() >= 6;
+        excedido = fails.size() == MAX_FAILS;
         return excedido;
     }
 

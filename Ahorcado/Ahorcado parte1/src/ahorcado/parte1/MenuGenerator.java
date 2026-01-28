@@ -22,8 +22,10 @@ public class MenuGenerator {
         do {
             menuGenerator.hangMan = new HangMan(menuGenerator.showInitMenu());
             menuGenerator.showGameMenu();
-            if(menuGenerator.hangMan.isGameOver()){
-                System.out.println("La palabra era: "+menuGenerator.hangMan.showFullWord());
+            if(menuGenerator.hangMan.isGameOver() && menuGenerator.hangMan.maxFailsExceeded()){
+                System.out.println("Perdiste, la palabra era: "+menuGenerator.hangMan.showFullWord());
+            }else if(menuGenerator.hangMan.isGameOver()){
+                System.out.println("Ganaste, la palabra era: "+menuGenerator.hangMan.showFullWord());
             }
         } while (!menuGenerator.showExitMenu());
         
@@ -38,21 +40,24 @@ public class MenuGenerator {
     private void showGameMenu() {
         Scanner scan = new Scanner(System.in);
         while (!hangMan.isGameOver()) {
-            System.out.println(hangMan.getStringFails());
+            
             System.out.println("¿Qué letra estará en esta palabra misteriosa?:");
+            System.out.println("");
             char c = scan.next().charAt(0);
             hangMan.tryChar(c);
+            System.out.println();
             System.out.println(hangMan.showHidenWord());
+            System.out.println("Letras falladas: "+hangMan.getStringFails());
         }
 
     }
 
     private boolean showExitMenu() {
-        if (hangMan.maxFailsExceeded() || hangMan.isGameOver()) {
+        if (hangMan.isGameOver()) {
             System.out.println("¿Quieres jugar otra vez?(s/n)");
             Scanner scan = new Scanner(System.in);
             String respuesta = scan.nextLine();
-            return !("s".equals(respuesta) || "S".equals(respuesta));
+            return !("s".equalsIgnoreCase(respuesta));
         } else {
             return false;
         }
