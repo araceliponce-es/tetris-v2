@@ -16,6 +16,7 @@
  */
 package tetris;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -161,23 +162,29 @@ public class Game {
     /**
      * Método que permite saber se unha posición x,y é válida para un cadrado
      *
+     * úsase dende os métodos da clase "Piece" que moven a peza para comprobar que cada cadrado vai quedar nunha posición correcta se se move a onde se pretende. Este método só comproba se unha posición x,y onde se quere colocar un cadrado sería válida.
      * @param x Coordenada x
      * @param y Coordenada y
      * @return true se esa posición é válida, se non false
      */
     public boolean isValidPosition(int x, int y) {
-        
-        //si xo y sobrepasa alguno de los maximos o es menor que cero
+       boolean res = true;
+        //si x o y sobrepasa alguno de los maximos o es menor que cero
         if ((x == MAX_X) || (x < 0) || (y == MAX_Y)||(y < 0)) {
-            return false;
+            res = false;
         }
+        
+        //las ids de los groundSquares esta en formato x,y. por ejemplo 100,120
+        //si el x y y a evaluar coinciden significa que está ocupado
         if (groundSquares.containsKey(x+","+y)){
-            return false;
+            res = false;
         }
         //si x o y es igual al x o y de alguno de los groundSquares
         //es igual a los valores de ground devolvera falso
+        
+        System.out.println("res "+ res + x + ", "+y);
 
-        return true;
+        return res;
     }
 
     /**
@@ -198,6 +205,8 @@ public class Game {
             for (int j=0; j < squares.length;j++){
                 String coordinates = squares[j].getCoordinates();
                 this.groundSquares.put(coordinates, squares[j]);
+                System.out.println(groundSquares.size()); //verifica que sí se agregan squares al piso
+             
             }
             
 
@@ -235,6 +244,10 @@ public class Game {
         
         
         // Polo momento, non facemos nada
+        /**
+         * comprobar se algún cadrado da peza actual está nunha posición inválida. Este método só se usa cando sae unha nova peza na partida, porque se ao saír a peza esta xa queda en posición inválida, entón remata a partida. Como cando unha peza ao aparecer nunca vai saír do panel, neste método non hai que comprobar que as coordenadas x e y de cada cadrado superen os límites máximo e mínimo, o que haberá que facer e comprobar que na posición de cada cadrado da peza non haxa un cadrado dos que están depositados no chan.
+         * 
+         */
         return false;
     }
 }
